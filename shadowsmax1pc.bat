@@ -1,0 +1,1 @@
+vssadmin resize shadowstorage /for=c: /on=c: /maxsize=1%
