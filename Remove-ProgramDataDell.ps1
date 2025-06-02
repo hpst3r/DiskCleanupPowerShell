@@ -1,6 +1,17 @@
 # Remove C:\ProgramData\Dell directory if it exists, which may contain logs or other data that can be safely removed.
 Function Remove-ProgramDataDell {
 
+  if (Test-Path -Path 'C:\ProgramData\Dell') {
+
+    Write-Host 'Dell directory found at C:\ProgramData\Dell. Proceeding with removal.'
+
+  } else {
+
+    Write-Host 'No Dell directory found at C:\ProgramData\Dell. Nothing to remove.'
+    return
+
+  }
+
   $Path = 'C:\ProgramData\Dell'
 
   Stop-Service -Name 'Dell Digital Delivery Services' # Digital Delivery Services
@@ -34,5 +45,3 @@ Function Remove-ProgramDataDell {
 }
 
 Remove-ProgramDataDell
-
-cmd -c 'rmdir /s /q $Path'
